@@ -33,16 +33,18 @@ http.createServer(function(request, response) {
             var results = collection.find({name: 'modulus user'});
             //Lets iterate on the result
             results.each(function (err, result) {
-                if (err) {
-                    response.write(err);
-                } else {
-                    response.write('Fetched: ' + result.name + " : " + result.age + " : " + result.roles.toString() +'\n');
-                }
                 //if the result is null, there are no more results, it’s ok to close everything
                 if (result == null) {
                     response.end('Completed');
                     db.close();
                 }
+
+                if (err) {
+                    response.write(err);
+                } else {
+                    response.write('Fetched: ' + result.name + " : " + result.age + " : " + result.roles.toString() +'\n');
+                }
+
 
                 //db.close();
                 //response.end('Finished, Connection closed \n');
