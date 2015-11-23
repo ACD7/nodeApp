@@ -36,6 +36,9 @@ http.createServer(function(request, response) {
                 if (err) {
                     response.write(err);
                 } else {
+                    //We need to sort by age descending
+                    results.sort({age: -1});
+
                     response.write('Fetched: ' + result.name + " : " + result.age + " : " + result.roles.toString() +'\n');
                 }
                 //if the result is null, there are no more results, it’s ok to close everything
